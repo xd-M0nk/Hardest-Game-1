@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -9,23 +10,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.W)) //move forward
-        {
-            transform.position += new Vector3(0, 0, speed * Time.deltaTime);
-        }
-        if(Input.GetKey(KeyCode.D)) //move backwards
-        {
-            transform.position += new Vector3(0, 0, -speed * Time.deltaTime);
-        }
-        if(Input.GetKey(KeyCode.A)) //move left
-        {
-            transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
-        }
-        if(Input.GetKey(KeyCode.S)) //move right
-        {
-            transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
-        }
+        //var - sets the type of the variable to the type of the value
+        var x = Input.GetAxisRaw("Horizontal");
+        var z = Input.GetAxisRaw("Vertical");
 
-        print(Time.deltaTime);
+
+        //normalized - equalizes the speed of the player in all directions
+        transform.position += new Vector3(x, 0, z).normalized * speed * Time.deltaTime;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            print("You died");
+        }
     }
 }
