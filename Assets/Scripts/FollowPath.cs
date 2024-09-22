@@ -20,6 +20,12 @@ public class FollowPath : MonoBehaviour
         if(Vector3.Distance(transform.position, path[index]) < 0.3f)
         {
             index++;
+
+            //if index is greater than or equal to the number of elements in the list
+            if(index >= path.Count)
+            {
+                index = 0;
+            }
         }
 
         transform.LookAt(path[index]);
