@@ -6,23 +6,27 @@ public class FollowPath : MonoBehaviour
 {
     //unity initialize the PUBLIC list for us
     public List<Vector3> path;
+    public float speed = 2.0f;
 
     //unity doesnt initialize the PRIVATE list for us
     //private List<Vector3> path = new();
 
-
-    void Start()
-    {
-        
-    }
+    private int index = 0;
 
     
     void Update()
     {
-        
+        //allow 0.3 m of error
+        if(Vector3.Distance(transform.position, path[index]) < 0.3f)
+        {
+            index++;
+        }
+
+        transform.LookAt(path[index]);
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
 
-    //ondrawgizmos is a unity function that is called when the object is selected
+
     private void OnDrawGizmos() 
     {
         //Gizmos class is a unity class that allows us to draw shapes in the scene view
