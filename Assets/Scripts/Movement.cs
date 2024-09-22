@@ -6,6 +6,13 @@ public class Movement : MonoBehaviour
 {
     public float speed = 5.0f;
 
+    private Vector3 startPosition;
+
+    private void Start() 
+    {
+        startPosition = transform.position;
+    }
+
     void Update()
     {
         var x = Input.GetAxisRaw("Horizontal");
@@ -19,6 +26,7 @@ public class Movement : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Enemy")){
             print("Game Over");
+            transform.position = startPosition;
         }
     }
 }
