@@ -1,16 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 1;
     public Vector3 startPos;
 
+    private AudioSource audioSource;
+
     void Start()
     {
         startPos = transform.position;
+        //get the audio source component that is attached to the player
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -28,8 +30,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            print("You died");
-            
+            audioSource.Play();
+
+            //delay scene loading by 2s to play sound first
+            Invoke("ReloadScene", 2);
         }
+    }
+
+    void ReloadScene()
+    {
+            //on death reload level
+            var sceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(sceneName);
     }
 }
