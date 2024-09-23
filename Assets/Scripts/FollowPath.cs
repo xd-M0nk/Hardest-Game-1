@@ -11,6 +11,8 @@ public class FollowPath : MonoBehaviour
     public List<Vector3> path;
     public float speed = 3;
 
+    public bool loop = true;
+
     private Vector3 target;
     private int currentPoint = 0;
 
@@ -24,8 +26,19 @@ public class FollowPath : MonoBehaviour
         //allow 0.3 m of error
         if(Vector3.Distance(transform.position, target) < 0.3f)
         {
-            //currentPoint++;
-            target = path[++currentPoint];
+            //increase index
+            currentPoint++;
+
+            //check if out of bounds
+            if(currentPoint >= path.Count)
+            {
+                currentPoint = 0;
+
+                if(!loop) path.Reverse();
+            }
+
+            //set next target
+            target = path[currentPoint];
         }
 
         transform.LookAt(target);

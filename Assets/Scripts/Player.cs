@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -24,6 +23,9 @@ public class Player : MonoBehaviour
         if(other.gameObject.tag == "Enemy")
         {
             print("Game Over");
+            //Restart the scene
+            var currentScene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentScene);
         }
     }
 }
