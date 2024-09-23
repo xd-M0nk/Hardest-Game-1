@@ -4,41 +4,48 @@ using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
-    // c# - public List<Vector3> path = new(); - initialize by hand
-    //public variables in Unity are initialized in the inspector
+    //unity initialize the PUBLIC list for us
     public List<Vector3> path;
-    public float speed = 5;
+    public float speed = 2.0f;
 
-    private Vector3 target;
-    private int currentPoint = 0;
+    public bool loop = true;
 
-    private void Start() 
-    {
-        //move the object to the first point in the path
-        target = path[0];
-    }
+    //unity doesnt initialize the PRIVATE list for us
+    //private List<Vector3> path = new();
+
+    private int index = 0;
+
     
     void Update()
     {
-        //if the object is at the target point (within 0.3 m),
-        //move to the next point
-        if(Vector3.Distance(transform.position, target) < 0.3f)
+        //allow 0.3 m of error
+        if(Vector3.Distance(transform.position, path[index]) < 0.3f)
         {
-            //currentPoint++
-            target = path[++currentPoint];
+            index++;
+
+            //if index is greater than or equal to the number of elements in the list go back to the start
+            if(index >= path.Count)
+            {
+                index = 0;
+
+                if(!loop){
+                    path.Reverse();
+                }
+            }
         }
 
-        transform.LookAt(target);
-
+        transform.LookAt(path[index]);
         transform.position += transform.forward * speed * Time.deltaTime;
     }
 
-    void OnDrawGizmos()
+
+    private void OnDrawGizmos() 
     {
-        //Gizmos - visual debugging tool
-        //DrawLine - draws a line between two points
-        //Color - sets the color of the line
-        Gizmos.color = Color.yellow;
+        //Gizmos class is a unity class that allows us to draw shapes in the scene view
+        //Gizmos.color sets the color of the shape
+        //Gizmos.DrawLine draws a line between two points
+
+        Gizmos.color = Color.red;
         for (int i = 0; i < path.Count - 1; i++)
         {
             Gizmos.DrawLine(path[i], path[i + 1]);
