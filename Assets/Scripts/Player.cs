@@ -12,6 +12,12 @@ public class Player : MonoBehaviour
         var z = Input.GetAxisRaw("Vertical");
 
 
+        //look in the direction of movement
+        if(x != 0 || z != 0)
+        {
+            transform.forward = new Vector3(x, 0, z);
+        }
+
         //Move the player
         //new Vector3(x, 0, z).normalized - makes the player move at the same speed 
         //in all directions
