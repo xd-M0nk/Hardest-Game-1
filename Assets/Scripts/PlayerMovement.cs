@@ -20,6 +20,10 @@ public class PlayerMovement : MonoBehaviour
         var x = Input.GetAxisRaw("Horizontal");
         var z = Input.GetAxisRaw("Vertical");
 
+        //look at the direction of the movement
+        if(x != 0 || z != 0) //rotate only if there is movement
+            transform.forward = new Vector3(x, 0, z);
+
         //normalized - move equally in all directions
         transform.position += new Vector3(x, 0, z).normalized * speed * Time.deltaTime;
     }
