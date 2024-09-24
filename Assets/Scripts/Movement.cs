@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -30,7 +29,9 @@ public class Movement : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Enemy")){
             print("Game Over");
-            transform.position = startPosition;
+            //reload the scene
+            var sceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(sceneName);
         }
     }
 }
