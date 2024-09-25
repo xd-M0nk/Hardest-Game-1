@@ -621,7 +621,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LEVEL ONE
+  m_Text: LEVEL EIGHT
 --- !u!222 &1210667155
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1172,7 +1172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8779135154647530551, guid: a433e4017b37d4201986b79ba4247ce7, type: 3}
       propertyPath: sceneName
-      value: Level 2
+      value: Level 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
