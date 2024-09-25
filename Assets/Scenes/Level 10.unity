@@ -192,7 +192,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LEVEL 1
+  m_Text: 'LEVEL 10
+
+
+'
 --- !u!222 &85567480
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1115,6 +1118,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4820908089460668527, guid: a433e4017b37d4201986b79ba4247ce7, type: 3}
+      propertyPath: nextScene
+      value: End
+      objectReference: {fileID: 0}
     - target: {fileID: 5824180157261262290, guid: a433e4017b37d4201986b79ba4247ce7, type: 3}
       propertyPath: m_Name
       value: Teleporter
